@@ -11,3 +11,11 @@ pull_request_rules:
           - author = pre-commit-ci[bot]
     actions:
       merge:
+  - name: merge on maintainer comment and CI pass
+    conditions:
+      - check-success = "check-macos-linux-nix"
+      - check-success = "pre-commit.ci - pr"
+      - comment-body~="@mergify merge"
+      - author~=^(arntanguy|ThomasDuvinage)$  # Replace with actual GitHub usernames
+    actions:
+      merge:
