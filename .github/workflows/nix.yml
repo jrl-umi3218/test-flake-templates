@@ -22,7 +22,7 @@ jobs:
       - uses: cachix/install-nix-action@v31
       - uses: cachix/cachix-action@v17
         with:
-          name: gepetto
+          name: mc-rtc-nix
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
       - run: nix flake check -L
       - run: nix build -L
