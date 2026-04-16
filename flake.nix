@@ -3,6 +3,7 @@
 
   inputs = {
     mc-rtc-nix.url = "github:mc-rtc/nixpkgs";
+    # mc-rtc-nix.url = "path:/home/arnaud/devel/mc-rtc-nix/nixpkgs";
     flake-parts.follows = "mc-rtc-nix/flake-parts";
     systems.follows = "mc-rtc-nix/systems";
 
@@ -39,7 +40,7 @@
               # Define a custom superbuild configuration
               # This will make all
               overrides.mc-rtc-superbuild =
-                { pkgs-prev, ... }:
+                { pkgs-prev, pkgs-final, ... }:
                 let
                   cfg-prev = pkgs-prev.mc-rtc-superbuild.superbuildArgs;
                 in
@@ -54,7 +55,7 @@
                     # configs = [ "${pkgs-final.polytopeController}/lib/mc_controller/etc/mc_rtc.yaml" ];
                     # plugins = [ pkgs-final.mc-force-shoe-plugin ];
                     # observers = [ pkgs-final.mc-state-observation ];
-                    # apps = [];
+                    # apps = [ pkgs-final.mc-rtc-magnum pkgs-final.mc-rtc-ticker pkgs-final.mc-mujoco ];
                   };
                 };
 
@@ -66,9 +67,10 @@
           {
             # define a devShell called local-superbuild with the superbuild configuration above
             # you can also override attributes to add additional shell functionality
-            devShells.local-superbuild =
+            packages.default = pkgs.mc-rtc-superbuild;
+            devShells.default =
               (pkgs.callPackage "${inputs.mc-rtc-nix}/shell.nix" {
-                inherit (pkgs) mc-rtc-superbuild;
+                mc-rtc-superbuild = pkgs.mc-rtc-superbuild;
               }).overrideAttrs
                 (old: {
                   shellHook = ''
