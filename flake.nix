@@ -1,5 +1,5 @@
 {
-  description = "Flake example for an mc-rtc controller with a superbuild shell";
+  description = "Flake example for an mc-rtc controller with a superbuild shell (test merge)";
 
   inputs = {
     mc-rtc-nix.url = "github:mc-rtc/nixpkgs";
