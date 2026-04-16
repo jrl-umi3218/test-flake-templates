@@ -21,7 +21,7 @@
       {
         systems = import inputs.systems;
         imports = [
-          inputs.mc-rtc-nix.flakeModulePrivate
+          inputs.mc-rtc-nix.flakeModule
           # or inputs.mc-rtc-nix.flakeModule if you don't need private repositories
           {
             flakoboros = {
