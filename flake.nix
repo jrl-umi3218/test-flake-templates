@@ -40,7 +40,7 @@
               # Define a custom superbuild configuration
               # This will make all
               overrides.mc-rtc-superbuild =
-                { pkgs-prev, pkgs-final, ... }:
+                { pkgs-prev, ... }:
                 let
                   cfg-prev = pkgs-prev.mc-rtc-superbuild.superbuildArgs;
                 in
