@@ -1,6 +1,7 @@
 pull_request_rules:
   - name: queue [bot] PRs when CI pass
     conditions:
+      - or:
         - author = dependabot[bot]
         - author = gepetto-flake-updater[bot]
         - author = mc-rtc-nixpkgs-flake-updater[bot]
