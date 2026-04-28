@@ -1,4 +1,4 @@
-name: "Wait 30s"
+name: "Wait 60s"
 
 on:
   workflow_dispatch:
@@ -17,8 +17,8 @@ jobs:
   wait:
     runs-on: ubuntu-latest
     steps:
-      - name: Wait for 30 seconds
-        run: sleep 30
+      - name: Wait for 60 seconds
+        run: sleep 60
 
   check:
     if: always()
